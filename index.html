@@ -1,0 +1,311 @@
+code
+Html
+play_circle
+download
+content_copy
+expand_less
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CES Bootcamp Agenda | Print Ready A4</title>
+    
+    <!-- LINK TO PRINT STYLES - Ensures the browser uses these when printing -->
+    <style>
+        /* ======================================= */
+        /* BASE SCREEN STYLES (Cleaned for Print Preview) */
+        /* ======================================= */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f4f4f4; /* Neutral background for screen view */
+            min-height: 100vh;
+            padding: 20px; 
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+        .header {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .header h1 { font-size: 32px; font-weight: 800; }
+        .header p { font-size: 16px; opacity: 0.9; }
+
+        /* Agenda Content & Section Headers */
+        .tab-content { display: block; padding: 30px; background: #fff; }
+        
+        .section-header { 
+            margin-top: 25px; 
+            margin-bottom: 20px; 
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            background: #f0f0f5;
+        }
+        .section-header h2 { font-size: 24px; margin: 0; color: #212529;}
+        .section-header p { font-size: 14px; color: #555; margin-top: 5px; }
+
+
+        /* Full Agenda Table - Desktop/Print Base Styles */
+        .full-agenda-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            border-spacing: 0; 
+            font-size: 14px;
+        }
+        .full-agenda-table th {
+            background-color: #e9ecef;
+            color: #333;
+            font-weight: 700;
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        .full-agenda-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            background: white;
+            vertical-align: top;
+            line-height: 1.4;
+        }
+        .full-agenda-table tr:nth-child(odd) td { background: #f8f8fc; }
+        
+        /* Column Specific Styling */
+        .full-agenda-table td:first-child { width: 80px; text-align: center; font-weight: 700; color: #667eea; } 
+        .full-agenda-table td:nth-child(2) { font-weight: 700; color: #212529; }
+        .full-agenda-table td:nth-child(3) { font-style: italic; color: #555; }
+        .full-agenda-table td:nth-child(4) { font-weight: 600; color: #dc3545; }
+
+        /* Hiding Mobile-only elements for desktop view */
+        .full-agenda-table thead { display: table-header-group; }
+        .full-agenda-table td:before { content: none; } 
+        
+        /* Specific row color highlights (Optional for screen, disabled for print below) */
+        .all-hands-event td:first-child { color: #333 !important; }
+        .morning-pod-row td:first-child { color: #333 !important; }
+        .keynote-row td:first-child { color: #333 !important; }
+
+        /* Hiding print-only header from screen */
+        .print-only-header { display: none; }
+
+
+        /* ======================================= */
+        /* PRINT STYLES (@media print) */
+        /* ======================================= */
+        @media print {
+            /* 1. Page Setup */
+            @page {
+                size: A4;
+                margin: 20mm 15mm 20mm 15mm; /* Top, Right, Bottom, Left */
+            }
+            
+            /* 2. Body and Container Reset */
+            body {
+                background: #fff !important;
+                -webkit-print-color-adjust: exact !important; /* Forces color printing */
+                print-color-adjust: exact !important;
+                padding: 0;
+            }
+            .container {
+                max-width: 100%;
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+                overflow: visible;
+                margin: 0;
+            }
+            
+            /* 3. Repeating Header/Title */
+            .header { display: none; /* Hide screen header */ }
+            .print-only-header {
+                display: block; /* Show print header */
+                position: running(header); /* Not universally supported, but good practice */
+                padding: 10mm 0;
+                text-align: center;
+                border-bottom: 2px solid #ccc;
+                margin-bottom: 10px;
+            }
+            
+            /* Simulating repeated header for better browser support */
+            .print-only-header h1 { 
+                font-size: 18pt; 
+                color: #667eea; 
+                margin-bottom: 3pt;
+            }
+            .print-only-header p { 
+                font-size: 10pt; 
+                color: #555;
+            }
+            
+            /* 4. Content Page Break Control */
+            h1, h2, .section-header { page-break-after: avoid; }
+            .full-agenda-table tr { page-break-inside: avoid; }
+            
+            /* 5. Table Reset for Print (High Contrast/Efficiency) */
+            .tab-content { padding: 0; }
+            .full-agenda-table { font-size: 10pt; }
+
+            /* Ensure table header repeats on new pages */
+            .full-agenda-table thead { 
+                display: table-header-group; 
+            }
+            .full-agenda-table th {
+                background-color: #f0f0f5 !important;
+                color: #333 !important;
+                border-top: 2pt solid #667eea !important;
+                font-size: 10pt;
+            }
+            .full-agenda-table td {
+                padding: 8px !important;
+                border: 1px solid #eee !important;
+                background: white !important; /* Force white background for efficiency */
+                color: #333;
+            }
+            .full-agenda-table tr:nth-child(odd) td { background: #f8f8fc !important; }
+
+            /* Color Adjustments for Print Economy (keeping key contrast) */
+            .full-agenda-table td:first-child { font-weight: 700; color: #764ba2 !important; } /* Time column light purple */
+            .full-agenda-table td:nth-child(2) { font-weight: 700; color: #212529 !important; }
+            .full-agenda-table td:nth-child(4) { font-weight: 600; color: #dc3545 !important; } /* Key Learning accent color */
+            
+            /* Mobile styles hiding for print */
+            .full-agenda-table td:before { display: none; }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Print-only header container, visible on every printed page (CSS controlled) -->
+    <div class="print-only-header">
+        <h1>TTA CES Bootcamp | Program Agenda</h1>
+        <p>November 4, 2025 | Taiwan Tech Arena</p>
+    </div>
+
+    <div class="container">
+        <!-- Screen Header -->
+        <div class="header">
+            <h1>🚀 TTA CES Bootcamp Startup Guide</h1>
+            <p>November 4, 2025 | Main Agenda & Full Schedule</p>
+        </div>
+
+        <div id="agenda_flow_standalone" class="tab-content">
+            <h1 style="margin-bottom: 25px; color: #212529;">Your Day: Complete Schedule</h1>
+
+            <div class="section-header">
+                <h2>📋 Complete Daily Schedule (All Startups)</h2>
+                <p style="font-size: 14px; color: #555;">(Location: All events are at Taiwan Tech Arena)</p>
+            </div>
+            
+            <table class="full-agenda-table">
+                <thead>
+                    <tr>
+                        <th style="width: 80px;">Time</th>
+                        <th>Event / Session Title</th>
+                        <th>Speaker / Mentor</th>
+                        <th>Key Learning / Audience</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="all-hands-event">
+                        <td>08:30 - 09:00</td>
+                        <td data-label="Session:">Check-in & Registration</td>
+                        <td data-label="Speaker:">     </td>
+                        <td data-label="Learning:">Badge & Materials Distribution. Location: Main Entrance</td>
+                    </tr>
+                    <tr class="all-hands-event">
+                        <td>09:00 - 09:05</td>
+                        <td data-label="Session:">Welcome & Context Setting</td>
+                        <td data-label="Speaker:">Volker Heistermann, Head of Strategic Partnerships, Mosaic Venture Lab</td>
+                        <td data-label="Learning:">Program Overview & Goals. Location: Main Hall</td>
+                    </tr>
+                    <tr class="all-hands-event">
+                        <td>09:05 - 09:10</td>
+                        <td data-label="Session:">Opening Remarks</td>
+                        <td data-label="Speaker:">Lin Der Sheng, Director General, NSTC</td>
+                        <td data-label="Learning:">Government Support & Program Significance. Location: Main Hall</td>
+                    </tr>
+                    <tr class="all-hands-event">
+                        <td>09:10 - 09:20</td>
+                        <td data-label="Session:">Group Photo</td>
+                        <td data-label="Speaker:">Startups, NSTC & Mentors</td>
+                        <td data-label="Learning:">All 55 Startups & Mentors. Location: Main Hall</td>
+                    </tr>
+                    <tr class="keynote-row">
+                        <td>09:20 - 09:40</td>
+                        <td data-label="Session:">Keynote 1: The US Playbook: From Corporate Pilots to Federal Funding</td>
+                        <td data-label="Speaker:">Deborah Magid, MD, NextStar Venture Partners, ex-IBM Ventures</td>
+                        <td data-label="Learning:">US Market Entry, Corporate VC, and Public Sector Opportunities. (All Startups)</td>
+                    </tr>
+                    <tr class="keynote-row">
+                        <td>09:40 - 10:00</td>
+                        <td data-label="Session:">Keynote 2: The First 10 Seconds: How to Earn the Right to a Conversation at CES</td>
+                        <td data-label="Speaker:">Dr. Volker Kaese, Board Member, Lit Motors, ex-Audi & VW</td>
+                        <td data-label="Learning:">Techniques to Hook Executives Immediately on the Show Floor. (All Startups)</td>
+                    </tr>
+                    <tr class="keynote-row">
+                        <td>10:00 - 10:20</td>
+                        <td data-label="Session:">Keynote 3: AI-Powered CES Prep: Turn LLMs Into Your Meeting-Booking Machine</td>
+                        <td data-label="Speaker:">Volker Heistermann, Head of Strategic Partnerships, Mosaic Venture Lab</td>
+                        <td data-label="Learning:">Leveraging Generative AI for Prospecting and Cold Outreach Efficiency. (All Startups)</td>
+                    </tr>
+                    <tr class="all-hands-event">
+                        <td>10:20 - 10:25</td>
+                        <td data-label="Session:">Interactive Cold Outreach Workshop</td>
+                        <td data-label="Speaker:">Mark Birch, Founder & CEO, ex-Amazon Web Services</td>
+                        <td data-label="Learning:">Visual examples of Good vs. Bad cold emails/profiles and rapid fix techniques. (All Startups)</td>
+                    </tr>
+                    <tr class="all-hands-event">
+                        <td>10:25 - 10:30</td>
+                        <td data-label="Session:">Transition Break</td>
+                        <td data-label="Speaker:">   </td>
+                        <td data-label="Learning:">Move to your assigned Morning Pod Room.</td>
+                    </tr>
+                    <tr class="morning-pod-row">
+                        <td>10:30 - 12:00</td>
+                        <td data-label="Session:">
+                            Morning Training Pods: Sales Pitch & Deck Assessment
+                            <br><i>Bring your, laptop, sales deck and 30 sec pitch</i>
+                        </td>
+                        <td data-label="Speaker:">12 Mentors in 12 separate Rooms</td>
+                        <td data-label="Learning:"><b>1-on-1 Review</b>: 30-Second Pitch Refinement, Sales Deck Messaging, USP & Competitor ID. (All Startups)</td>
+                    </tr>
+                    <tr class="all-hands-event">
+                        <td>12:00 - 13:00</td>
+                        <td data-label="Session:">Networking Lunch & Mentor Compilation</td>
+                        <td data-label="Speaker:">Mentors</td>
+                        <td data-label="Learning:">Informal Networking and Mentor Feedback Compilation. Location: Lunch Area</td>
+                    </tr>
+                    <tr class="all-hands-event">
+                        <td>13:00 - 16:20</td>
+                        <td data-label="Session:">
+                            Specialized Workshops Rotation: Fact Finding, Floor Hunting, Adaptive Pitching & Negotiation
+                            <br><small><i>Bring your demo products for CES, if any.</i></small>
+                        </td>
+                        <td data-label="Speaker:">Mentors</td>
+                        <td data-label="Learning:">Role playing and practical skills to make CES 2026 a success.</td>
+                    </tr>
+                    <tr class="all-hands-event">
+                        <td>16:20 - 17:10</td>
+                        <td data-label="Session:">Closing Sessions & Ceremony</td>
+                        <td data-label="Speaker:">Mentor Panel</td>
+                        <td data-label="Learning:">General Feedback, Top Tactics Share-out, Post-Bootcamp Next Steps. Location: Main Hall</td>
+                    </tr >
+                </tbody>
+            </table>
+        </div>
+        <!-- END AGENDA CONTENT -->
+
+    </div>
+</body>
+</html>
