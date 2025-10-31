@@ -1,3 +1,9 @@
+
+Html
+play_circle
+download
+content_copy
+expand_less
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,18 +91,15 @@
         .full-agenda-table td:first-child:before { 
             content: none; 
         }
-        .full-agenda-table .keynote-row td:first-child,
-        .full-agenda-table .morning-pod-row td:first-child { background: #f8f8fc !important; color: #333333 !important; }
-        
+
+        /* Adjusting mobile column widths for 3 columns */
         .full-agenda-table td:nth-child(2) { font-weight: 700; color: #212529; }
-        .full-agenda-table td:nth-child(3) { font-style: italic; font-size: 13px; }
-        .full-agenda-table td:nth-child(4) { border-bottom: none; font-size: 14px; color: #dc3545; font-weight: 600; }
-        .full-agenda-table tr:last-child { margin-bottom: 0; }
+        .full-agenda-table td:nth-child(3) { font-style: italic; font-size: 13px; border-bottom: none; }
+        
         /* Mobile colors for all-hands/keynote/pod time blocks */
         .all-hands-event td:first-child { background: #ffc107 !important; color: #333333 !important; }
         .morning-pod-row td:first-child { background: #ffc107 !important; color: #333333 !important; }
         .keynote-row td:first-child { background: #ffc107 !important; color: #333333 !important; }
-
 
         /* ======================================= */
         /* DESKTOP OPTIMIZATION (Min Width 768px) */
@@ -112,9 +115,17 @@
             .header p { font-size: 18px; }
             .tab-content { padding: 30px; }
 
-            /* Full Agenda Table desktop layout */
+            /* Full Agenda Table desktop layout - 3 columns */
             .full-agenda-table { width: 100%; border-collapse: collapse; border-spacing: 0; }
             .full-agenda-table thead { display: table-header-group; }
+            .full-agenda-table th {
+                background-color: #f0f0f5;
+                color: #333;
+                font-weight: 600;
+                padding: 12px;
+                text-align: left;
+                border: 1px solid #ddd;
+            }
             .full-agenda-table tr { 
                 display: table-row; 
                 margin-bottom: 0; 
@@ -130,24 +141,15 @@
                 white-space: normal;
                 vertical-align: top;
             }
-            .full-agenda-table th {
-                background-color: #f0f0f5;
-                color: #333;
-                font-weight: 600;
-                padding: 12px;
-                text-align: left;
-                border: 1px solid #ddd;
-            }
             .full-agenda-table tr:nth-child(odd) td { background: #f8f8fc; }
             
-            .full-agenda-table td:first-child { width: 80px; text-align: center; font-weight: 700; color: #ffffff !important; } 
-
+            /* Column Widths and Formatting for 3 columns */
+            .full-agenda-table td:first-child { width: 10%; text-align: center; font-weight: 700; color: #ffffff !important; } 
+            .full-agenda-table td:nth-child(2) { width: 45%; font-weight: 700; color: #212529; }
+            .full-agenda-table td:nth-child(3) { width: 45%; font-style: italic; font-size: 14px; }
+            
             .full-agenda-table .keynote-row td:first-child,
             .full-agenda-table .morning-pod-row td:first-child { background: #f8f8fc !important; color: #333333 !important; }
-            
-            .full-agenda-table td:nth-child(2) { width: 35%; font-weight: 700; color: #212529; }
-            .full-agenda-table td:nth-child(3) { width: 30%; font-style: italic; font-size: 14px; }
-            .full-agenda-table td:nth-child(4) { width: 35%; font-weight: 600; color: #dc3545; }
         }
     </style>
 </head>
@@ -169,66 +171,51 @@
             <table class="full-agenda-table">
                 <thead>
                     <tr>
-                        <th style="width: 80px;">Time</th>
-                        <th>Event / Session Title</th>
-                        <th>Speaker / Mentor</th>
-                        <th>Key Learning / Audience</th>
+                        <th style="width: 10%;">Time</th>
+                        <th style="width: 45%;">Event / Session Title</th>
+                        <th style="width: 45%;">Speaker / Mentor</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="all-hands-event">
                         <td>08:30 - 09:00</td>
                         <td data-label="Session:">Check-in & Registration</td>
-                        <td data-label="Speaker:">     </td>
-                        <td data-label="Learning:">Badge & Materials Distribution. Location: Main Entrance</td>
+                        <td data-label="Speaker:"><b></b></td>
                     </tr>
                     <tr class="all-hands-event">
-                        <td>09:00 - 09:05</td>
-                        <td data-label="Session:">Welcome & Context Setting</td>
-                        <td data-label="Speaker:">Volker Heistermann, Head of Strategic Partnerships, Mosaic Venture Lab</td>
-                        <td data-label="Learning:">Program Overview & Goals. Location: Main Hall</td>
-                    </tr>
-                    <tr class="all-hands-event">
-                        <td>09:05 - 09:10</td>
-                        <td data-label="Session:">Opening Remarks</td>
-                        <td data-label="Speaker:">Lin Der Sheng, Director General, NSTC</td>
-                        <td data-label="Learning:">Government Support & Program Significance. Location: Main Hall</td>
+                        <td>09:00 - 09:10</td>
+                        <td data-label="Session:">Welcome and Opening Remarks</td>
+                        <td data-label="Speaker:"><b>Lin Der Sheng, Director General, NSTC</b></td>
                     </tr>
                     <tr class="all-hands-event">
                         <td>09:10 - 09:20</td>
                         <td data-label="Session:">Group Photo</td>
-                        <td data-label="Speaker:">Startups, NSTC & Mentors</td>
-                        <td data-label="Learning:">All 55 Startups & Mentors. Location: Main Hall</td>
+                        <td data-label="Speaker:"><b>Startups, NSTC & Mentors</b></td>
                     </tr>
                     <tr class="keynote-row">
                         <td>09:20 - 09:35</td>
                         <td data-label="Session:">Keynote 1: The US Playbook: From Corporate Pilots to Federal Funding</td>
-                        <td data-label="Speaker:">Deborah Magid, MD, NextStar Venture Partners, ex-IBM Ventures</td>
-                        <td data-label="Learning:">US Market Entry, Corporate VC, and Public Sector Opportunities. (All Startups)</td>
+                        <td data-label="Speaker:"><b>Deborah Magid, MD, NextStar Venture Partners, ex-IBM Ventures</b></td>
                     </tr>
                     <tr class="keynote-row">
                         <td>09:35 - 09:50</td>
                         <td data-label="Session:">Keynote 2: The First 10 Seconds: How to Earn the Right to a Conversation at CES</td>
-                        <td data-label="Speaker:">Dr. Volker Kaese, Board Member, Lit Motors, ex-Audi & VW</td>
-                        <td data-label="Learning:">Techniques to Hook Executives Immediately on the Show Floor. (All Startups)</td>
+                        <td data-label="Speaker:"><b>Dr. Volker Kaese, Board Member, Lit Motors, ex-Audi & VW</b></td>
                     </tr>
                     <tr class="keynote-row">
                         <td>09:50 - 10:05</td>
                         <td data-label="Session:">Keynote 3: AI-Powered CES Prep: Turn LLMs Into Your Meeting-Booking Machine</td>
-                        <td data-label="Speaker:">Volker Heistermann, Head of Strategic Partnerships, Mosaic Venture Lab</td>
-                        <td data-label="Learning:">Leveraging Generative AI for Prospecting and Cold Outreach Efficiency. (All Startups)</td>
+                        <td data-label="Speaker:"><b>Volker Heistermann, MD, Mosaic Venture Lab, ex-Google & AT&T</b></td>
                     </tr>
                     <tr class="all-hands-event">
                         <td>10:05 - 10:25</td>
                         <td data-label="Session:">Interactive Cold Outreach Workshop</td>
-                        <td data-label="Speaker:">Mark Birch, Founder & CEO, ex-Amazon Web Services</td>
-                        <td data-label="Learning:">Visual examples of Good vs. Bad cold emails/profiles and rapid fix techniques. (All Startups)</td>
+                        <td data-label="Speaker:"><b>Mark Birch, Founder & CEO, ex-Amazon Web Services</b></td>
                     </tr>
                     <tr class="all-hands-event">
                         <td>10:25 - 10:30</td>
                         <td data-label="Session:">Transition Break</td>
-                        <td data-label="Speaker:">   </td>
-                        <td data-label="Learning:">Move to your assigned Morning Pod Room.</td>
+                        <td data-label="Speaker:"> </td>
                     </tr>
                     <tr class="morning-pod-row">
                         <td>10:30 - 12:00</td>
@@ -236,14 +223,12 @@
                             Morning Training Pods: Sales Pitch & Deck Assessment
                             <br><i>Bring your, laptop, sales deck and 30 sec pitch</i>
                         </td>
-                        <td data-label="Speaker:">12 Mentors in 12 separate Rooms</td>
-                        <td data-label="Learning:"><b>1-on-1 Review</b>: 30-Second Pitch Refinement, Sales Deck Messaging, USP & Competitor ID. (All Startups)</td>
+                        <td data-label="Speaker:"><b>12 Mentors in 12 separate Rooms</b></td>
                     </tr>
                     <tr class="all-hands-event">
                         <td>12:00 - 13:00</td>
                         <td data-label="Session:">Networking Lunch & Mentor Compilation</td>
-                        <td data-label="Speaker:">Mentors</td>
-                        <td data-label="Learning:">Informal Networking and Mentor Feedback Compilation. Location: Lunch Area</td>
+                        <td data-label="Speaker:"><b>Mentors</b></td>
                     </tr>
                     <tr class="all-hands-event">
                         <td>13:00 - 16:20</td>
@@ -251,14 +236,12 @@
                             Specialized Workshops Rotation: Fact Finding, Floor Hunting, Adaptive Pitching & Negotiation
                             <br><small><i>Bring your demo products for CES, if any.</i></small>
                         </td>
-                        <td data-label="Speaker:">Mentors</td>
-                        <td data-label="Learning:">Role playing and practical skills to make CES 2026 a success.</td>
+                        <td data-label="Speaker:"><b>Mentors</b></td>
                     </tr>
                     <tr class="all-hands-event">
                         <td>16:20 - 17:10</td>
                         <td data-label="Session:">Closing Sessions & Ceremony</td>
-                        <td data-label="Speaker:">Mentor Panel</td>
-                        <td data-label="Learning:">General Feedback, Top Tactics Share-out, Post-Bootcamp Next Steps. Location: Main Hall</td>
+                        <td data-label="Speaker:"><b>Mentor Panel</b></td>
                     </tr >
                 </tbody>
             </table>
